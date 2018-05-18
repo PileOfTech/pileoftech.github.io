@@ -1,0 +1,218 @@
+//Sizes
+$b-nav-height: 80px;
+
+
+//Colors
+$green: #77991D;
+$green-light: rgba(100, 195, 125, 0.25);
+$red: #8D2007;
+$red-light: rgba(141, 32, 7, 0.32);
+$grey: rgba(0, 0, 0, 0.5);
+
+
+@font-face{
+  font-family: 'stolzl-reg';
+  src: url('fonts/Stolzl-Regular.otf');
+}
+@font-face{
+  font-family: 'stolzl-light';
+  src: url('fonts/Stolzl-Light.ttf');
+}
+
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+section{
+  position: absolute;
+  width: 100%;
+  background-color: white;
+}
+
+nav{
+  height: $b-nav-height;
+  width: 100%;
+  background-color: white;
+  position: relative;
+  .logo{
+    $logo: 60px;
+    height: $logo;
+    width: $logo;
+    position: relative;
+    margin-left: 50px;
+    top: 20px;
+    background-image: url('images/logo.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+  .links{
+    top: 20px;
+    height: 40px;
+    width: auto;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    .link{
+      $padding: 20px;
+      margin-right: 75px;
+      font-family: 'stolzl-reg';
+      font-size: 24px;
+      color: black;
+      position: relative;
+      width: auto;
+      padding-left: $padding;
+      padding-right: $padding;
+      height: 100%;
+      transition: 0.5s;
+      padding-top: 10px;
+      &:hover{
+        cursor: pointer;
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+}
+
+.container{
+  $large-container: 700px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: $large-container;
+  width: 100%;
+  .icon{
+    $icon: 130px;
+    top: calc((#{$large-container} - 130px)/2);
+    left: calc((100% - #{$icon})/2);
+    z-index: 100;
+    position: absolute;
+    height: $icon;
+    width: $icon;
+    background-size: cover;
+  }
+  .content-block{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .hor-line{
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      margin-top: calc(700px/2);
+    }
+    .big-text{
+      $big-text: 300px;
+      position: relative;
+      height: $big-text;
+      margin: 0px auto;
+      margin-top: calc((#{$large-container} - #{$big-text})/2);
+      font-family: 'stolzl-reg';
+      font-size: 150px;
+      line-height: 154px;
+    }
+    .side-text{
+      position: absolute;
+      height: 36px;
+      font-family: 'stolzl-light';
+      font-size: 30px;
+      display: inline-block;
+      .polygon{
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        background-size: cover;
+        top: 32px;
+      }
+    }
+    img{
+      height: 100%;
+      width: 100%;
+    }
+  }  
+}
+
+.bottom-container{
+  width: 100%;
+  height: calc(100% - 700px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  .half{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    &:nth-child(1){
+      border-right: 1px solid $green-light;
+    }
+    .center-text{
+      $large-c: 30px;
+      position: relative;
+      height: $large-c;
+      text-align: center;
+      font-size: $large-c;
+      font-family: 'stolzl-light';
+      color: $grey;
+      top: calc((100% - #{$large-c})/2);
+    }
+  }  
+}
+
+#healthy-section{
+  height: calc(100% - #{$b-nav-height}) !important;
+  .icon{
+    background-image: url('images/broccoli.png');
+  }  
+  .big-text{
+    color: $green;
+    width: 630px;
+    text-align: right;       
+  }
+  .side-text{
+    bottom: 0px;
+    color: $green;  
+    width: 313px;  
+    left: calc((100% - 313px)/ 2);    
+  }
+  .polygon{
+    left: 187px;
+    background-image: url('images/ellipse.png');  
+    position: relative;
+    right: 105px;
+  }
+  .hor-line{
+    background-color: $green-light;
+  }
+}
+#fastfood-section{
+  height: 100%;
+  top: 100%;
+  .icon{
+    background-image: url('images/hamburger.png');
+  }  
+  .big-text{
+    color: $red;
+    width: 630px;
+    text-align: center;    
+  }
+  .side-text{
+    top: 0px;
+    color: $red;  
+    width: 256px;  
+    left: calc((100% - 256px)/ 2);
+    padding-left: 36px;        
+  }  
+  .polygon{
+    left: 0px;
+    background-image: url('images/triangle.png');  
+  }  
+  .hor-line{
+    background-color: $red-light;
+  }  
+}
+#recipe{
+  height: 1540px;
+  // background-color: grey;
+  top: calc(180%);
+}
