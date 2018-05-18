@@ -8,7 +8,7 @@ $green-light: rgba(100, 195, 125, 0.25);
 $red: #8D2007;
 $red-light: rgba(141, 32, 7, 0.32);
 $grey: rgba(0, 0, 0, 0.5);
-
+$grey-line: rgba(148, 148, 148, 0.6);
 
 @font-face{
   font-family: 'stolzl-reg';
@@ -176,10 +176,10 @@ nav{
     left: calc((100% - 313px)/ 2);    
   }
   .polygon{
-    left: 187px;
+    left: 193px;
     background-image: url('images/ellipse.png');  
     position: relative;
-    right: 105px;
+    top: -63px;
   }
   .hor-line{
     background-color: $green-light;
@@ -212,7 +212,80 @@ nav{
   }  
 }
 #recipe{
-  height: 1540px;
+  height: 1525px;
   // background-color: grey;
   top: calc(180%);
+}
+#best{
+  height: 1100px;
+  top: calc(180% + 1545px);
+  background-color: #959595;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;  
+  .title-cont{
+    top: -2px;
+    box-sizing: border-box;
+    height: 124px;
+    width: 710px;
+    background-color: white;
+    position: absolute;
+    left: 360px;
+    font-family: 'stolzl-light';
+    color: black;
+    text-align: center;
+    padding-top: 32px;
+    font-size: 60px;
+  }
+  .half{
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+  }
+}
+
+#recomends{
+  top: calc(180% + 1545px + 1100px);
+  height: 975px;
+  .text-container{
+    $text-cont: 615px;
+    position: absolute;
+    height: $text-cont;
+    width: 1100px;
+    border-right: 4px solid $grey-line;
+    border-left: 4px solid $grey-line;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    left: calc((100% - 1100px)/2);
+    box-sizing: border-box;
+    .text{
+      position: relative;
+      width: 1060px;
+      height: 350px;
+      margin:0px auto;
+      text-align: center;
+      font-family: 'stolzl-reg';
+      color: $grey;
+      font-size: 40px;
+      line-height: 62px;
+      margin-top: 140px;
+    }
+    .border-column{
+      position: absolute;
+      height: $text-cont;
+      width: 40px;
+      box-sizing: border-box;
+      border-bottom: 4px solid $grey-line;
+      border-top: 4px solid $grey-line;
+      &:nth-child(2){
+        right: 0px;
+      }
+    }
+  }
+}
+
+#contacts{
+  top: calc(180% + 1545px + 1100px + 975px);
+  height: 1150px;
 }
