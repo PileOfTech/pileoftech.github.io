@@ -5,6 +5,7 @@ $b-nav-height: 80px;
 //Colors
 $green: #77991D;
 $green-light: rgba(100, 195, 125, 0.25);
+$green-border: #669731;
 $red: #8D2007;
 $red-light: rgba(141, 32, 7, 0.32);
 $grey: rgba(0, 0, 0, 0.5);
@@ -215,7 +216,7 @@ nav{
   height: 1525px;
   top: calc(180%);
   .background{
-    $content-h: 1300px;
+    $content-h: 1200px;
     height: $content-h;
     width: 100%;
     position: relative;
@@ -224,6 +225,8 @@ nav{
     background-repeat: no-repeat;
     background-position: bottom;
     .title{
+      z-index: 200;
+      position:  absolute;
       width: 890px;
       height: 125px;
       color: white;
@@ -231,6 +234,48 @@ nav{
       font-size: 60px;
       padding-left: 70px;
       padding-top: calc(#{$content-h}/2);
+    }
+    .component{
+      box-sizing: border-box;
+      z-index: 180;
+      position: relative;
+      height: 1045px;
+      width: 1190px;
+      border-bottom: 3px solid $green-border;
+      border-left: 3px solid $green-border;
+      top: 335px;
+      left: 540px;
+      .recipe{
+        position: absolute;
+        box-sizing: border-box;
+        background-color: white;
+        width: 400px;
+        height: 145px !important;
+        top: calc(100% - 75px);
+        left: 320px;
+        border: 3px solid $green-border;
+        text-align: center;
+        color: $green-border;
+        text-align: center;
+        font-family: 'stolzl-light';
+        font-size: 60px;
+        padding-top: 35px;
+      }
+      .vert-column{
+        position: absolute;
+        box-sizing: border-box;
+        height: 100%;
+        width: 720px;
+        border-top: 3px solid $green-border;
+      }
+      .hor-column{
+        position: absolute;
+        box-sizing: border-box;
+        height: 360px;
+        bottom: 0px;
+        width: 100%;
+        border-right: 3px solid $green-border;
+      }
     }
   }
 }
@@ -283,7 +328,7 @@ nav{
         $padding: 170px;
         text-align: center;
         font-family: 'stolzl-light';
-        font-size: 24px;
+        font-size: 20px;
         padding-left: $padding;
         padding-right: $padding;
       }
@@ -340,6 +385,61 @@ nav{
 #contacts{
   top: calc(180% + 1545px + 1100px + 975px);
   height: 1150px;
+  .contacts-block{
+    position: absolute;
+    width: 890px;
+    height: 300px;
+    top: 590px;
+    left: 220px;
+    text-align: center;
+    .text{
+      padding-top: 20px;
+      color: black;
+      font-size: 50px;
+      font-family: 'stolzl-light';
+      line-height: 59px;
+    }
+    .link{
+      line-height: 59px;
+      color: black;
+      font-family: 'stolzl-reg';
+      font-size: 50px;
+      a{
+        color: black !important;
+        text-decoration: none;
+      }
+    }
+    .number{
+      line-height: 59px;
+      color: rgba(0, 0, 0, 0.5);
+      font-family: 'stolzl-light';
+      font-size: 40px;
+    }
+    .icons{
+      $icon-size: 75px;
+      height: $icon-size;
+      width: 180px;
+      margin: 0px auto;
+      margin-top: 15px;
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      .icon{
+        height: $icon-size;
+        width: $icon-size;
+        background-size: cover;
+        cursor: pointer;
+      }
+      .icon-vk{
+        background-image: url('images/icon-vk.png');
+      }
+      .icon-instagram{
+        background-image: url('images/icon-instagram.png');
+      }
+    }
+  }
   .cookie{
     height: 100%;
     width: 770px;
@@ -347,6 +447,5 @@ nav{
     background-image: url('images/cookie.png');
     position: absolute;
     right: 0px;
-
   }
 }
