@@ -7,6 +7,7 @@ $green: #77991D;
 $green-light: rgba(100, 195, 125, 0.25);
 $green-border: #669731;
 $red: #8D2007;
+$red-border: #CE2E05;
 $red-light: rgba(141, 32, 7, 0.32);
 $grey: rgba(0, 0, 0, 0.5);
 $grey-line: rgba(148, 148, 148, 0.6);
@@ -348,12 +349,59 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     background-color: $red-light;
   }  
 }
+.slick-list,.slick-track {
+  height: 100%;
+}
 #recipies{
   height: 100%;
   top: calc(180%);
   @include m-desctop{
     top: calc(180%);
   }
+
+  .slider{
+    $content-h: 100%;
+    $m-content-h: 100%;
+    height: $content-h;
+    width: 100%;
+    position: relative;   
+    .slider-el{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      background-color: white;
+    }
+  }
+  .bac-01{
+    background-image: url('../images/back-recipe-01.png');
+    .text{
+      width: 890px;
+      height: 125px;
+      color: white;
+      padding-left: 70px;
+      padding-top: calc((600px - 125px)/2);      
+    }
+  } 
+  .bac-02{
+    background-image: url('../images/back-recipe-02.png');
+    .text{
+      width: 890px;
+      height: 125px;
+      color: black;
+      padding-left: 740px;
+      padding-top: 140px;      
+    }    
+  }  
+  .bac-03{
+    background-image: url('../images/back-recipe-03.png');
+    .text{
+      width: 465px;
+      height: 275px;
+      color: black;
+      padding-left: 72px;
+      padding-top: 200px;      
+    }        
+  }      
   .background{
     $content-h: 600px;
     $m-content-h: 450px;
@@ -361,65 +409,77 @@ $m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
     width: 100%;
     position: relative;
     background-size: cover;
-    background-image: url('../images/back-recipe.png');
     background-repeat: no-repeat;
     background-position: bottom;
     @include m-desctop{
       height: $m-content-h;
     }    
-    .title{
+    .text{
       z-index: 200;
       position:  absolute;
-      width: 890px;
-      height: 125px;
-      color: white;
       font-family: 'stolzl-light';
       font-size: 60px;
-      padding-left: 70px;
-      padding-top: calc(#{$content-h}/2);
     }
-    .component{
+  }
+  .component{
+    box-sizing: border-box;
+    z-index: 180;
+    position: absolute;
+    height: 680px;
+    width: 1190px;
+    border-bottom: 3px solid $green-border;
+    border-left: 3px solid $green-border;
+    top: 120px;
+    left: 340px;
+    .recipe{
+      position: absolute;
       box-sizing: border-box;
-      z-index: 180;
-      position: relative;
-      height: 1045px;
-      width: 1190px;
-      border-bottom: 3px solid $green-border;
-      border-left: 3px solid $green-border;
-      top: 335px;
-      left: 540px;
-      .recipe{
-        position: absolute;
-        box-sizing: border-box;
-        background-color: white;
-        width: 400px;
-        height: 145px !important;
-        top: calc(100% - 75px);
-        left: 320px;
-        border: 3px solid $green-border;
-        text-align: center;
-        color: $green-border;
-        text-align: center;
-        font-family: 'stolzl-light';
-        font-size: 60px;
-        padding-top: 35px;
-      }
-      .vert-column{
-        position: absolute;
-        box-sizing: border-box;
-        height: 100%;
-        width: 720px;
-        border-top: 3px solid $green-border;
-      }
-      .hor-column{
-        position: absolute;
-        box-sizing: border-box;
-        height: 360px;
-        bottom: 0px;
-        width: 100%;
-        border-right: 3px solid $green-border;
-      }
+      background-color: white;
+      width: 400px;
+      height: 140px !important;
+      top: calc(100% - 75px);
+      left: calc((1200px - 400px)/2;
+      border: 3px solid $green-border;
+      text-align: center;
+      color: $green-border;
+      text-align: center;
+      font-family: 'stolzl-light';
+      font-size: 60px;
+      padding-top: 35px;
     }
+    .vert-column{
+      position: absolute;
+      box-sizing: border-box;
+      height: 100%;
+      width: 450px;
+      border-top: 3px solid $green-border;
+    }
+    .hor-column{
+      position: absolute;
+      box-sizing: border-box;
+      height: 410px;
+      bottom: 0px;
+      width: 100%;
+      border-right: 3px solid $green-border;
+    }
+  }
+  .blac-comp{
+    border-color: black;
+    .recipe{
+      border-color: black;
+      color: black;
+    }
+    .vert-column{border-color: black;}
+    .hor-column{border-color: black;}
+  }
+  .red-comp{
+    border-color: $red-border;
+    .recipe{
+      border-color: $red-border;
+      color: $red-border;
+    }
+    .vert-column{border-color: $red-border;}
+    .hor-column{border-color: $red-border;}    
   }
 }
 #best{

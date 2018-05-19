@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  console.log($(window).width());
+  // console.log($(window).width());
 
   $('#burger').click(function(){
     $('.modal-left').addClass('slide');
@@ -13,5 +13,7 @@ $(document).ready(function() {
     console.log('clock');
     $('.modal').removeClass('slide');
   });
+
+  $('.slider').slick();
 });
 
