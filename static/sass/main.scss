@@ -43,7 +43,7 @@ nav{
     position: relative;
     margin-left: 50px;
     top: 20px;
-    background-image: url('images/logo.png');
+    background-image: url('../images/logo.png');
     background-size: 100%;
     background-repeat: no-repeat;
   }
@@ -163,7 +163,7 @@ nav{
 #healthy-section{
   height: calc(100% - #{$b-nav-height}) !important;
   .icon{
-    background-image: url('images/broccoli.png');
+    background-image: url('../images/broccoli.png');
   }  
   .big-text{
     color: $green;
@@ -178,7 +178,7 @@ nav{
   }
   .polygon{
     left: 193px;
-    background-image: url('images/ellipse.png');  
+    background-image: url('../images/ellipse.png');  
     position: relative;
     top: -63px;
   }
@@ -190,7 +190,7 @@ nav{
   height: 100%;
   top: 100%;
   .icon{
-    background-image: url('images/hamburger.png');
+    background-image: url('../images/hamburger.png');
   }  
   .big-text{
     color: $red;
@@ -206,7 +206,7 @@ nav{
   }  
   .polygon{
     left: 0px;
-    background-image: url('images/triangle.png');  
+    background-image: url('../images/triangle.png');  
   }  
   .hor-line{
     background-color: $red-light;
@@ -221,7 +221,7 @@ nav{
     width: 100%;
     position: relative;
     background-size: 100%;
-    background-image: url('images/back-recipe.png');
+    background-image: url('../images/back-recipe.png');
     background-repeat: no-repeat;
     background-position: bottom;
     .title{
@@ -300,24 +300,58 @@ nav{
     padding-top: 32px;
     font-size: 60px;
   }
+  .modal{
+    z-index: 500;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transition-timing-function: ease-out;
+    .close{
+      cursor: pointer;
+      position: absolute;
+      height: 75px;
+      width: 75px;
+      background-color: grey;
+      right: 25px;
+      top: 25px;
+    }
+  }
+  .modal-left{
+    transform: translateX(-100%);
+  }
+  .modal-right{
+    transform: translateX(100%);
+  }
+  .slide{
+    transform: translateX(0%); 
+  }
+  #burger{
+    background-image: url('../images/back-burger.png');
+  }
+  #noodles{
+    background-image: url('../images/back-noodles.png');
+  }
   .half{
     width: 100%;
     height: 100%;
     background-size: 100%;
     background-position: bottom;
-    &:nth-child(2){
-      background-image: url('images/back-burger.png');
-    }
-    &:nth-child(3){
-      background-image: url('images/back-noodles.png');
+    cursor: pointer;
+    &:hover{
+      .text-cont{
+        transform: scale(1.2, 1.2);
+      }
     }
     .text-cont{
-      // background-color: grey;
+      transition: 0.5s;
       height: 205px;
       width: 710px;
       margin: 0px auto;
       margin-top: 184px;
       color: white;
+      transform: scale(1.0, 1.0);
       .title{
         padding-top: 24px;
         font-family: 'stolzl-reg';
@@ -433,10 +467,10 @@ nav{
         cursor: pointer;
       }
       .icon-vk{
-        background-image: url('images/icon-vk.png');
+        background-image: url('../images/icon-vk.png');
       }
       .icon-instagram{
-        background-image: url('images/icon-instagram.png');
+        background-image: url('../images/icon-instagram.png');
       }
     }
   }
@@ -444,7 +478,7 @@ nav{
     height: 100%;
     width: 770px;
     background-size: cover;
-    background-image: url('images/cookie.png');
+    background-image: url('../images/cookie.png');
     position: absolute;
     right: 0px;
   }
