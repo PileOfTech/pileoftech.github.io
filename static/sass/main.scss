@@ -11,6 +11,53 @@ $red-light: rgba(141, 32, 7, 0.32);
 $grey: rgba(0, 0, 0, 0.5);
 $grey-line: rgba(148, 148, 148, 0.6);
 
+
+//deltas
+$m-hor-delta: 1.33;
+$m-vert-delta: 1.2;
+
+$sm-hor-delta: 1.5;
+$sm-vert-delta: 1.35;
+
+$tb-hor-delta: 1.93;
+$tab-vert-delta: 1.4;
+
+
+
+//meidia-queries mixins
+@mixin l-desctop{
+  @media (min-width: 1443px){
+    @content;
+  }
+}
+
+@mixin m-desctop{
+  @media (min-width: 1280px) and (max-width: 1442px){
+    @content;
+  }
+}
+
+@mixin s-desctop{
+  @media (min-width: 1030px) and (max-width: 1279px){
+    @content;
+  }
+}
+
+
+@mixin tablet{
+  @media (min-width: 768px) and (max-width: 1029px){
+    @content;
+  }
+}
+
+
+@mixin mobile{
+  @media (min-width: 311px) and (max-width: 768px){
+    @content;
+  }
+}
+
+//fots
 @font-face{
   font-family: 'stolzl-reg';
   src: url('fonts/Stolzl-Regular.otf');
@@ -20,9 +67,11 @@ $grey-line: rgba(148, 148, 148, 0.6);
   src: url('fonts/Stolzl-Light.ttf');
 }
 
+
 body{
   padding: 0px;
   margin: 0px;
+  overflow-x: hidden !important;
 }
 
 section{
@@ -36,6 +85,9 @@ nav{
   width: 100%;
   background-color: white;
   position: relative;
+  @include m-desctop{
+    height: $b-nav-height/$m-vert-delta;
+  }
   .logo{
     $logo: 60px;
     height: $logo;
@@ -46,6 +98,12 @@ nav{
     background-image: url('../images/logo.png');
     background-size: 100%;
     background-repeat: no-repeat;
+    @include m-desctop{
+      $logo: calc(#{$logo}/#{$m-vert-delta});
+      height: $logo;
+      width: $logo;
+      top: 15px;
+    }
   }
   .links{
     top: 20px;
@@ -54,19 +112,27 @@ nav{
     position: absolute;
     right: 0px;
     display: flex;
+    @include m-desctop{
+      top: 15px;
+    }
     .link{
       $padding: 20px;
-      margin-right: 75px;
+      box-sizing: border-box;
       font-family: 'stolzl-reg';
       font-size: 24px;
       color: black;
       position: relative;
       width: auto;
-      padding-left: $padding;
       padding-right: $padding;
+      padding-left: $padding;
       height: 100%;
       transition: 0.5s;
       padding-top: 10px;
+      margin-right: 75px;
+      @include m-desctop{
+        margin-right: 35px;
+        font-size: 18px;
+      }
       &:hover{
         cursor: pointer;
         background-color: black;
@@ -76,22 +142,33 @@ nav{
   }
 }
 
+$large-container: 700px;
+$m-large-container: calc(#{$large-container} / #{$m-vert-delta} - 105px);
 .container{
-  $large-container: 700px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   height: $large-container;
   width: 100%;
+  @include m-desctop{
+    height: $m-large-container;
+  }
   .icon{
     $icon: 130px;
-    top: calc((#{$large-container} - 130px)/2);
+    $m-icon: $icon / $m-vert-delta;
+    top: calc((#{$large-container})/2 - #{$icon}/2);
     left: calc((100% - #{$icon})/2);
     z-index: 100;
     position: absolute;
     height: $icon;
     width: $icon;
     background-size: cover;
+    @include m-desctop{
+      height: $m-icon;
+      width: $m-icon;
+      top: calc((#{$m-large-container})/2 - #{$m-icon}/2);
+      left: calc((100% - #{$m-icon})/2);      
+    }
   }
   .content-block{
     height: 100%;
@@ -101,17 +178,27 @@ nav{
       position: absolute;
       height: 2px;
       width: 100%;
-      margin-top: calc(700px/2);
+      margin-top: calc(#{$large-container}/2);
+      @include m-desctop{
+        margin-top: calc(#{$m-large-container}/2);
+      }
     }
     .big-text{
       $big-text: 300px;
+      $m-big-text: $big-text / $m-vert-delta;
       position: relative;
       height: $big-text;
       margin: 0px auto;
       margin-top: calc((#{$large-container} - #{$big-text})/2);
       font-family: 'stolzl-reg';
-      font-size: 150px;
+      font-size: calc(#{$big-text} / 2);
       line-height: 154px;
+      @include m-desctop{
+        height: 200px;
+        margin-top: calc((#{$m-large-container} - 210px)/2);
+        font-size: 100px;
+        line-height: 102px;
+      }
     }
     .side-text{
       position: absolute;
@@ -125,6 +212,15 @@ nav{
         width: 30px;
         background-size: cover;
         top: 32px;
+        @include m-desctop{
+          height: 20px;
+          width: 20px; 
+          top: 22px;         
+        }        
+      }
+      @include m-desctop{
+         font-size: 20px;
+         height: 24px;
       }
     }
     img{
@@ -136,10 +232,23 @@ nav{
 
 .bottom-container{
   width: 100%;
-  height: calc(100% - 700px);
+  height: calc(100% - #{$large-container});
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  @include m-desctop{
+    height: calc(100% - #{$m-large-container});
+  }
+  .or{
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-family: 'stolzl-reg';
+    font-size: 60px;
+    height: 60px;
+    width: 100%;
+    margin-top: calc((190px - 60px)/2);    
+  }
   .half{
     box-sizing: border-box;
     width: 100%;
@@ -156,6 +265,11 @@ nav{
       font-family: 'stolzl-light';
       color: $grey;
       top: calc((100% - #{$large-c})/2);
+      @include m-desctop{
+        $m-large-c: 20px;
+        font-size: $m-large-c;
+        top: calc((100% - #{$m-large-c})/2);
+      }
     }
   }  
 }
@@ -168,19 +282,32 @@ nav{
   .big-text{
     color: $green;
     width: 630px;
-    text-align: right;       
+    text-align: right;  
+    @include m-desctop{
+      $m-width: 630px / $m-hor-delta;
+      width: $m-width;
+    }     
   }
   .side-text{
-    bottom: 0px;
+    bottom: 32px;
     color: $green;  
     width: 313px;  
-    left: calc((100% - 313px)/ 2);    
+    left: calc((100% - 313px)/ 2); 
+    @include m-desctop{
+      width: 150px;
+      bottom: 22px;
+      left: calc((100% - 150px)/ 2); 
+    }   
   }
   .polygon{
     left: 193px;
     background-image: url('../images/ellipse.png');  
     position: relative;
     top: -63px;
+    @include m-desctop{
+      top: -41px;
+      left: 130px;
+    }
   }
   .hor-line{
     background-color: $green-light;
@@ -195,14 +322,23 @@ nav{
   .big-text{
     color: $red;
     width: 630px;
-    text-align: center;    
+    text-align: center;
+    @include m-desctop{
+      width: 400px;
+    } 
+
   }
   .side-text{
-    top: 0px;
+    top: -32px;
     color: $red;  
     width: 256px;  
     left: calc((100% - 256px)/ 2);
-    padding-left: 36px;        
+    padding-left: 36px;
+    @include m-desctop{
+      top: -22px;
+      width: 180px;
+      left: calc((100% - 180px)/ 2);
+    }          
   }  
   .polygon{
     left: 0px;
@@ -212,18 +348,25 @@ nav{
     background-color: $red-light;
   }  
 }
-#recipe{
-  height: 1525px;
+#recipies{
+  height: 100%;
   top: calc(180%);
+  @include m-desctop{
+    top: calc(180%);
+  }
   .background{
-    $content-h: 1200px;
+    $content-h: 600px;
+    $m-content-h: 450px;
     height: $content-h;
     width: 100%;
     position: relative;
-    background-size: 100%;
+    background-size: cover;
     background-image: url('../images/back-recipe.png');
     background-repeat: no-repeat;
     background-position: bottom;
+    @include m-desctop{
+      height: $m-content-h;
+    }    
     .title{
       z-index: 200;
       position:  absolute;
@@ -280,12 +423,14 @@ nav{
   }
 }
 #best{
-  height: 1100px;
-  top: calc(180% + 1545px);
-  background-color: #959595;
+  height: 100%;
+  top: calc(280%);
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;  
+  flex-wrap: nowrap; 
+  @include m-desctop{
+    top: calc(280%);
+  } 
   .title-cont{
     top: -2px;
     box-sizing: border-box;
@@ -299,30 +444,123 @@ nav{
     text-align: center;
     padding-top: 32px;
     font-size: 60px;
+    @include m-desctop{
+      font-size: 40px;
+      height: 64px;
+      padding-top: 7px;
+      width: 400px;
+      left: 300px;
+    }      
   }
   .modal{
+    box-sizing: border-box; 
     z-index: 500;
     position: absolute;
-    background-color: white;
     width: 100%;
     height: 100%;
     transition: transform 0.8s;
     transition-timing-function: ease-out;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;        
     .close{
+      box-sizing: border-box;
       cursor: pointer;
       position: absolute;
       height: 75px;
-      width: 75px;
-      background-color: grey;
-      right: 25px;
-      top: 25px;
+      width: 300px;
+      border: 2px solid white;
+      bottom: 125px;
+      left: calc((100% - 300px)/2);
+      z-index: 600;
+      color: white;
+      font-family: 'stolzl-light';
+      text-align: center;
+      font-size: 50px;
+      padding-top: 7px;
+      transition: 0.5s;
+      @include m-desctop{
+        bottom: 105px;
+        font-size: 30px;
+        height: 60px;
+        width: 230px;
+        padding-top: 15px;
+        left: calc((100% - 230px)/2);
+      }
+      &:hover{
+        background-color: white;
+        color: black;
+      }
+    }
+    .close-black{
+      border: 2px solid black;
+      color: black;
+      &:hover{
+        background-color: black;
+        color: white;
+      }      
+    }
+    .image{
+      position: relative;
+      height: 100%;
+      min-width: 1020px;
+      max-width: 1020px;
+      width: 1020px;
+      @include m-desctop{
+        min-width: 720px;
+        max-width: 720px;
+        width: 820px;
+      }         
+      img{
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .desc-block{
+      position: relative;
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      @include m-desctop{
+        background-size: cover;
+      }
+      .text{
+        margin: 0px auto;
+        margin-top: 236px;
+        width: 710px;
+        height: 490px;
+        font-size: 30px;
+        font-family: 'stolzl-reg';
+        line-height: 70px;
+        @include m-desctop{
+          margin-top: 186px;
+          font-size: 18px;
+          line-height: 40px;
+          width: 450px;
+        }
+      }
     }
   }
   .modal-left{
     transform: translateX(-100%);
+    .desc-block{
+      background-image: url('../images/desc-burger.png');
+      .text{
+        color: white;
+      }
+    }
   }
   .modal-right{
     transform: translateX(100%);
+   .desc-block{
+      background-image: url('../images/desc-noodles.png');
+      .text{
+        color: black;
+      }
+    }    
   }
   .slide{
     transform: translateX(0%); 
@@ -336,7 +574,7 @@ nav{
   .half{
     width: 100%;
     height: 100%;
-    background-size: 100%;
+    background-size: cover;
     background-position: bottom;
     cursor: pointer;
     &:hover{
@@ -352,11 +590,18 @@ nav{
       margin-top: 184px;
       color: white;
       transform: scale(1.0, 1.0);
+      @include m-desctop{
+        margin-top: 70px;
+        width: 500px;
+      }
       .title{
         padding-top: 24px;
         font-family: 'stolzl-reg';
         text-align: center;
         font-size: 60px;
+        @include m-desctop{
+          font-size: 40px;
+        }
       }
       .desc{
         $padding: 170px;
@@ -365,19 +610,34 @@ nav{
         font-size: 20px;
         padding-left: $padding;
         padding-right: $padding;
+        @include m-desctop{
+          padding-left: 120px;
+          padding-right: 120px;
+          font-size: 16px;
+        }
       }
       .r-desc{
         $padding: 130px;
         padding-left: $padding !important;
         padding-right: $padding !important;        
+        @include m-desctop{
+          padding-left: 0px !important;
+          padding-right: 0px !important;
+          font-size: 16px;
+        }      
       }
+
     }
   }
 }
 
 #recomends{
-  top: calc(180% + 1545px + 1100px);
+  top: calc(280% + 1000px);
   height: 975px;
+  @include m-desctop{
+    top: calc(280% + 700px);
+    height: 100%;
+  }
   .text-container{
     $text-cont: 615px;
     position: absolute;
@@ -385,11 +645,17 @@ nav{
     width: 1100px;
     border-right: 4px solid $grey-line;
     border-left: 4px solid $grey-line;
-    bottom: 0px;
+    bottom: 200px;
     left: 0px;
     right: 0px;
     left: calc((100% - 1100px)/2);
     box-sizing: border-box;
+    @include m-desctop{
+      height: 415px;
+      width: 800px;
+      left: calc((100% - 800px)/2);
+      bottom: 150px;
+    }
     .text{
       position: relative;
       width: 1060px;
@@ -401,6 +667,11 @@ nav{
       font-size: 40px;
       line-height: 62px;
       margin-top: 140px;
+      @include m-desctop{
+        margin-top: 50px;
+        width: 700px;
+        font-size: 22px;
+      }      
     }
     .border-column{
       position: absolute;
@@ -409,6 +680,9 @@ nav{
       box-sizing: border-box;
       border-bottom: 4px solid $grey-line;
       border-top: 4px solid $grey-line;
+      @include m-desctop{
+        height: 415px;
+      }      
       &:nth-child(2){
         right: 0px;
       }
@@ -417,8 +691,12 @@ nav{
 }
 
 #contacts{
-  top: calc(180% + 1545px + 1100px + 975px);
-  height: 1150px;
+  top: calc(280% + 1000px + 775px);
+  height: 1000px;
+  @include m-desctop{
+    height: 100%;
+    top: calc(280% + 1545px + 550px);
+  }
   .contacts-block{
     position: absolute;
     width: 890px;
@@ -426,18 +704,31 @@ nav{
     top: 590px;
     left: 220px;
     text-align: center;
+    @include m-desctop{
+      top: 300px;
+      left: 150px;
+      width: 500px;
+    }
     .text{
       padding-top: 20px;
       color: black;
       font-size: 50px;
       font-family: 'stolzl-light';
       line-height: 59px;
+      @include m-desctop{
+        font-size: 30px;
+        line-height: 34px;
+      }      
     }
     .link{
       line-height: 59px;
       color: black;
       font-family: 'stolzl-reg';
       font-size: 50px;
+      @include m-desctop{
+        font-size: 30px;
+        line-height: 34px;
+      }        
       a{
         color: black !important;
         text-decoration: none;
@@ -448,6 +739,10 @@ nav{
       color: rgba(0, 0, 0, 0.5);
       font-family: 'stolzl-light';
       font-size: 40px;
+      @include m-desctop{
+        font-size: 25px;
+        line-height: 34px;
+      }        
     }
     .icons{
       $icon-size: 75px;
@@ -460,11 +755,19 @@ nav{
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: space-between;
+      @include m-desctop{
+        width: 100px;
+        height: 40px;
+      }        
       .icon{
         height: $icon-size;
         width: $icon-size;
         background-size: cover;
         cursor: pointer;
+        @include m-desctop{
+          height: 40px;
+          width: 40px;          
+        }          
       }
       .icon-vk{
         background-image: url('../images/icon-vk.png');
@@ -481,5 +784,8 @@ nav{
     background-image: url('../images/cookie.png');
     position: absolute;
     right: 0px;
+    @include m-desctop{
+      width: 400px;
+    }
   }
 }
